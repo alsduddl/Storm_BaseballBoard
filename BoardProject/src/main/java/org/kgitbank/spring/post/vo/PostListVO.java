@@ -2,6 +2,7 @@ package org.kgitbank.spring.post.vo;
 
 import java.util.Date;
 
+//게시글 목록
 public class PostListVO {
 	private int postListSn;
 	private int postId;
@@ -10,7 +11,9 @@ public class PostListVO {
 	private Date contentDate;
 	
 	private int likeCount;
+	
 	private String isNotice;
+	
 	private String userRole;
 	
 	public int getPostListSn() {

@@ -82,14 +82,13 @@
 <main>
 <div class="container-fluid px-4 pt-5">
 
-    <!-- 제목 -->
     <div class="row justify-content-center mb-4">
         <div class="col-lg-8 col-md-10 mt-5">
             <h1 class="fs-3 fw-bold">게시글 수정</h1>
         </div>
     </div>
 
-    <!-- 수정 폼 카드 -->
+    <!-- 게시글 수정 -->
     <div class="row justify-content-center mb-5">
         <div class="col-lg-8 col-md-10">
             <div class="card">

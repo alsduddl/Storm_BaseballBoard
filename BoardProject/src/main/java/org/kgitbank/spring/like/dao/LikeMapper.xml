@@ -2,22 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kgitbank.spring.like.dao.ILikeRepository" >
 
+<!-- 좋아요 버튼 누름 확인 - 중복 확인 -->
 <select id="checkLike" resultType="int">
 select count(*)
 from postlike
 where post_id = #{postId} and user_id = #{userId}
 </select>
 
+<!-- 좋아요 누름 -->
 <insert id="insertLike" >
 insert into postlike(post_id, user_id)
 values(#{postId}, #{userId})
 </insert>
 
+<!-- 좋아요 취소 -->
 <delete id="deleteLike">
 delete from postlike
 where post_id = #{postId} and user_id = #{userId}
 </delete>
 
+<!-- 좋아요 수 세기 -->
 <select id="getLikeCount" resultType="int">
 select count(*)
 from postlike

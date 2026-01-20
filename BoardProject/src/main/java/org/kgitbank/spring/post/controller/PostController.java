@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+//게시글
 @Controller
 @RequestMapping("/post")
 public class PostController {
@@ -32,6 +33,7 @@ public class PostController {
 	@Autowired
 	private IRecommendService recommendService;
 	
+	//게시글 작성
 	@GetMapping("/write")
 	public String insertPostForm() {
 		return "post/write";
@@ -43,16 +45,17 @@ public class PostController {
 	    UserVO loginUser = (UserVO) auth.getPrincipal();
 	    post.setUserId(loginUser.getUserId());
 
+	    //현재 로그인한 사용자가 관리자 권한인지 확인
 	    boolean isAdmin = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
 	    
 	    if (isAdmin) {
-	        // 관리자는 무조건 공지글
+	        //관리자는 무조건 공지글
 	        post.setIsNotice("Y");
 	        post.setSeatInfo(null);
 	        post.setCheerScore(null);
 	        post.setSatisfactionScore(null);
 	    } else {
-	        // 일반회원은 일반글
+	        //회원은 일반글
 	        post.setIsNotice("N");
 	    }
 
@@ -60,6 +63,7 @@ public class PostController {
 	    return "redirect:/post/list";
 	}
 
+	//게시글 목록
 	@GetMapping("/list")
 	public String getPostList(Model model) {
 		List<PostListVO> postList = postService.getPostList();
@@ -83,6 +87,7 @@ public class PostController {
 		return "post/detail";
 	}
 	
+	//게시글 수정
 	@GetMapping("/update")
 	public String updatePost(@RequestParam int postId, Model model) {
 		PostVO post = postService.getPostDetail(postId);
@@ -97,7 +102,7 @@ public class PostController {
 	    PostVO originPost = postService.getPostDetail(post.getPostId());
 
 	    boolean isAdmin = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
-	 // 작성자 or 관리자만 수정 가능
+	    //작성자 or 관리자만 수정 가능
 	    if (!originPost.getUserId().equals(loginUser.getUserId()) && !isAdmin) {
 	        return "redirect:/post/detail?postId=" + post.getPostId();
 	    }
@@ -117,6 +122,7 @@ public class PostController {
 	    return "redirect:/post/detail?postId=" + post.getPostId();
 	}
 	
+	//게시글 삭제
 	//게시글 상세페이지에서 현재 로그인한 사용자랑 게시글 작성자가 같은지 확인 후 삭제
 	@PostMapping("/delete")
 	public String deletePost(int postId) {
@@ -134,7 +140,7 @@ public class PostController {
 	    return "redirect:/post/list";
 	}
 	
-	//좌석 검색
+	//좌석 검색 - 키워드 검색 연결시킴
 	@GetMapping("/search")
 	public String searchSeat(@RequestParam(required = false) String keyword, Model model) {
 		model.addAttribute("keyword", keyword);

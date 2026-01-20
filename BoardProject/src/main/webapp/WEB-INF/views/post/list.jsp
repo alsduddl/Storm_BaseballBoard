@@ -126,7 +126,7 @@
         </div>
     </div>
 
-    <!-- 게시글 테이블 -->
+    <!-- 게시글 목록 -->
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10">
             <div class="card">

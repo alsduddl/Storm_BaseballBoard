@@ -10,7 +10,8 @@ public class CommentVO {
 	private String content;
 	private Date contentDate;
 	private String postTitle;
-	private Integer parentCommentId;
+	//대댓글 사용
+	private Integer parentCommentId;  
 	
 	public int getCommentId() {
 		return commentId;

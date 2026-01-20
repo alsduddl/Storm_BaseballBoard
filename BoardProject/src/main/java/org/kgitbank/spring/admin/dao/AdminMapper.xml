@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kgitbank.spring.admin.dao.IAdminRepository" >
 
+<!-- 회원 목록 -->
 <select id="getUserList" resultType="org.kgitbank.spring.user.vo.UserVO" >
 select user_id as userId,
 user_name as userName,
@@ -14,11 +15,13 @@ from users
 order by user_id desc
 </select>
 
+<!-- 회원 삭제 -->
 <delete id="deleteUser">
 delete from users
 where user_id = #{userId}
 </delete>
 
+<!-- 회원의 게시글 -->
 <select id="getPostsByUser" resultType="org.kgitbank.spring.post.vo.PostListVO" >
 select post_id as postId,
 title,
@@ -28,6 +31,7 @@ where user_id = #{user_id}
 order by post_id desc
 </select>
 
+<!-- 회원의 댓글 -->
 <select id="getCommentsByUser" resultType="org.kgitbank.spring.comment.vo.CommentVO" >
 select 
 c.comment_id as commentId,
@@ -43,11 +47,13 @@ where c.user_id = #{userId}
 order by c.comment_id
 </select>
 
+<!-- 게시글 삭제 -->
 <delete id="deletePost">
 delete from post
 where post_id = #{postId}
 </delete>
 
+<!-- 댓글 삭제 -->
 <delete id="deleteComment">
 delete from comments
 where comment_id = #{commentId}

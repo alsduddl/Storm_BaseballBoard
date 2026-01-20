@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+//댓글 작성
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
@@ -18,6 +19,9 @@ public class CommentController {
 	@Autowired
 	private ICommentService commentService;
 	
+	
+	//댓글 수정
+	//회원이 작성한 댓글만 수정 가능
 	@PostMapping("/update")
 	@ResponseBody
 	public CommentVO updateComment(@RequestBody CommentVO comment, Principal principal) {
@@ -26,6 +30,7 @@ public class CommentController {
 	    return commentService.getCommentById(comment.getCommentId());
 	}
 	
+	//댓글 삭제
 	@PostMapping("/delete")
 	@ResponseBody
 	public String deleteComment(int commentId, Principal principal) {
@@ -34,6 +39,7 @@ public class CommentController {
 		return result == 1 ? "success" : "fail";
 	}
 	
+	//댓글 작성
 	@PostMapping("/write")
 	@ResponseBody
 	public CommentVO writeComment(@RequestParam int postId, @RequestParam String content, @RequestParam(required=false) Integer parentCommentId, Principal principal) {

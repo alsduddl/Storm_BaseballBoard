@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kgitbank.spring.user.dao.IUserRepository" >
 
+<!-- 회원 정보 -->
 <select id="getUserById" parameterType="String" resultType="org.kgitbank.spring.user.vo.UserVO" >
 select user_id as userId,
 password,
@@ -15,17 +16,20 @@ from users
 where user_id = #{userId, jdbcType=VARCHAR}
 </select>
 
+<!-- 회원 정보 입력 -->
 <insert id="insertUser" parameterType="org.kgitbank.spring.user.vo.UserVO" >
 insert into users (user_id, password, user_name, email, phone_number, nickname, role)
 values (#{userId}, #{password}, #{userName}, #{email}, #{phoneNumber}, #{nickname}, #{role})
 </insert>
 
+<!-- 아이디 확인 -->
 <select id="getuserIdCount" parameterType="String" resultType="int">
 select count(*)
 from users
 where user_id = #{userId}
 </select>
 
+<!-- 닉네임 확인 -->
 <select id="getnicknameCount" parameterType="String" resultType="int">
 select count(*)
 from users

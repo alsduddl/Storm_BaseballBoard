@@ -27,7 +27,7 @@
                             <div class="card-body">
                                 <form:form action="${pageContext.request.contextPath}/user/join" method="post" modelAttribute="user" onsubmit="return beforeSubmit()">
                                     
-                                    <!-- 1. 아이디 -->
+                                    <!-- 아이디 -->
                                     <div class="form-floating mb-3">
                                         <form:input path="userId" cssClass="form-control" id="userId" placeholder="아이디"/>
                                         <label for="userId">아이디</label>
@@ -35,35 +35,35 @@
                                         <button id="userIdCheck" type="button" class="btn btn-outline-secondary btn-sm mt-1">아이디 중복체크</button>
                                     </div>
 
-                                    <!-- 2. 비밀번호 -->
+                                    <!-- 비밀번호 -->
                                     <div class="form-floating mb-3">
                                         <form:input path="password" cssClass="form-control" id="password" type="password" placeholder="비밀번호"/>
                                         <label for="password">비밀번호</label>
                                         <form:errors path="password" cssClass="text-danger"/>
                                     </div>
 
-                                    <!-- 3. 이름 -->
+                                    <!-- 이름 -->
                                     <div class="form-floating mb-3">
                                         <form:input path="userName" cssClass="form-control" id="userName" placeholder="이름"/>
                                         <label for="userName">이름</label>
                                         <form:errors path="userName" cssClass="text-danger"/>
                                     </div>
 
-                                    <!-- 4. 이메일 -->
+                                    <!-- 이메일 -->
                                     <div class="form-floating mb-3">
                                         <form:input path="email" cssClass="form-control" id="email" placeholder="이메일"/>
                                         <label for="email">이메일</label>
                                         <form:errors path="email" cssClass="text-danger"/>
                                     </div>
 
-                                    <!-- 5. 전화번호 -->
+                                    <!-- 전화번호 -->
                                     <div class="form-floating mb-3">
                                         <form:input path="phoneNumber" cssClass="form-control" id="phoneNumber" placeholder="전화번호"/>
                                         <label for="phoneNumber">전화번호</label>
                                         <form:errors path="phoneNumber" cssClass="text-danger"/>
                                     </div>
 
-                                    <!-- 6. 닉네임 -->
+                                    <!-- 닉네임 -->
                                     <div class="form-floating mb-3">
                                         <form:input path="nickname" cssClass="form-control" id="nickname" placeholder="닉네임"/>
                                         <label for="nickname">닉네임</label>

@@ -8,14 +8,17 @@ public class PostVO {
 	private String title;
 	private String content;
 	private String seatInfo;
-	private Integer  cheerScore;
-	private Integer  satisfactionScore;
+	private Integer cheerScore;
+	private Integer satisfactionScore;
 	private Date contentDate;
 	
+	//게시글 번호
 	private int userPostNum;
 	
+	//좋아요 수
 	private int likeCount;
 	
+	//공지글인지 아닌지 구분
 	private String isNotice;
 	
 	public int getPostId() {

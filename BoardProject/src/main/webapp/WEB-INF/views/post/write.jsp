@@ -99,7 +99,6 @@
 <main>
 <div class="container-fluid px-4 pt-5">
 
-    <!-- 페이지 제목 -->
     <div class="row justify-content-center mb-4">
         <div class="col-lg-8 col-md-10 mt-5">
             <h1 class="fs-3">
@@ -108,7 +107,7 @@
         </div>
     </div>
 
-    <!-- 작성 폼 카드 -->
+    <!-- 게시글 작성 -->
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10">
             <div class="card mb-5">

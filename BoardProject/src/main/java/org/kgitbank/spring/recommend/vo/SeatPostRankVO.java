@@ -1,5 +1,6 @@
 package org.kgitbank.spring.recommend.vo;
 
+//구역 게시글
 public class SeatPostRankVO {
 	
 	private int postId;

@@ -102,7 +102,7 @@
             </div>
         </div>
 
-        <!-- 게시글 정보 카드 -->
+        <!-- 게시글 정보 -->
         <div class="row justify-content-center mb-4">
             <div class="col-lg-8 col-md-10">
                 <div class="card">
@@ -153,7 +153,7 @@
             </div>
         </div>
 
-        <!-- 댓글 카드 -->
+        <!-- 댓글 -->
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 col-md-10">
                 <div class="card">
@@ -203,7 +203,7 @@
                                                 </div>
                                             </sec:authorize>
 
-                                            <!-- 대댓글 리스트 -->
+                                            <!-- 대댓글 목록 -->
                                             <div class="mt-3 ms-4">
                                                 <c:forEach var="reply" items="${commentList}">
                                                     <c:if test="${reply.parentCommentId == comment.commentId}">

@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+//회원
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -39,7 +40,7 @@ public class UserController {
     @Autowired
     private ICommentService commentService;
 
-    // 마이페이지
+    //마이페이지
     @GetMapping("/mypage")
     public String myPage(Model model) {
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -51,7 +52,7 @@ public class UserController {
         return "user/mypage";
     }
 
-    // 회원가입
+    //회원가입
     @GetMapping("/join")
     public String joinUserForm(Model model) {
         model.addAttribute("user", new JoinDTO());  
@@ -67,20 +68,21 @@ public class UserController {
         return "redirect:/login";
     }
 
-    // 아이디 중복 + 정규식 체크
+    //아이디 중복 + 정규식 체크
     @RequestMapping("/userIdCheck")
     @ResponseBody
     public int userIdCheck(@RequestParam("userId") String userId) {
         return userService.getuserIdCount(userId);
     }
 
-    // 닉네임 중복 + 정규식 체크
+    //닉네임 중복 + 정규식 체크
     @RequestMapping("/nicknameCheck")
     @ResponseBody
     public int nicknameCheck(@RequestParam("nickname") String nickname) {
         return userService.getnicknameCount(nickname);
     }
     
+    //작성한 게시글
     @GetMapping("/mylist")
     public String myPostList(Model model) {
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -90,6 +92,7 @@ public class UserController {
         return "user/mylist";
     }
     
+    //작성한 댓ㄱㄹ
     @GetMapping("/mycomment")
     public String getMyCommentList(Model model, Principal principal) {
     	String userId = principal.getName();

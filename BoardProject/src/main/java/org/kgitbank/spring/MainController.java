@@ -16,7 +16,7 @@ public class MainController {
 	private IPostService postService;
 	
 	//메인페이지 접속
-	//
+	//topLikePost : 좋아요TOP5, mainPostList : 최신 게시글
 	@GetMapping({"/", "/main"})
 	public String mainPage(Model model) {
 		List<PostListVO> topLikePost = postService.getTopLikePost();

@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kgitbank.spring.recommend.dao.IRecommendRepository" >
 
+<!-- 응원 분위기 최고 구역 -->
 <select id="getBestCheerSeat" resultType="org.kgitbank.spring.recommend.vo.SeatRankVO">
 select seat_info as seatInfo,
 round(avg(cheer_score), 1)as avgScore
@@ -13,6 +14,7 @@ order by avg(cheer_score) desc
 fetch first 1 rows only
 </select>
 
+<!-- 좌석 만족도 최고 구역 -->
 <select id="getBestSatisfactionSeat" resultType="org.kgitbank.spring.recommend.vo.SeatRankVO">
 select seat_info as seatInfo,
 round(avg(satisfaction_score), 1)as avgScore
@@ -23,6 +25,7 @@ order by avg(satisfaction_score) desc
 fetch first 1 rows only
 </select>
 
+<!-- 종합 점수 = (응원 분위기 점수 + 만족도 점수)/2 -->
 <select id="getTopSeatPost" resultType="org.kgitbank.spring.recommend.vo.SeatPostRankVO">
 select p.post_id as postId,
 p.title,
@@ -35,6 +38,7 @@ order by avgScore desc
 fetch first 3 rows only
 </select>
 
+<!-- 키워드로 구역 검색, 구역에 대한 평균 점수 -->
 <select id="searchSeat" resultType="org.kgitbank.spring.recommend.vo.SeatPostRankVO">
 select post_id as postId,
 title,

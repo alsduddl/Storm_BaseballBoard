@@ -73,131 +73,131 @@
 
 <div id="layoutSidenav_content">
 
-    <!-- =================== MAIN =================== -->
-    <main>
-        <div class="container-fluid px-4 pt-5">
+<!-- =================== MAIN =================== -->
+<main>
+    <div class="container-fluid px-4 pt-5">
 
-            <!-- 작성한 게시글 -->
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-10 col-md-11 mt-5">
-                    <div class="card">
-                        <div class="card-header">작성한 게시글</div>
-                        <div class="card-body">
+        <!-- 작성한 게시글 -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 col-md-11 mt-5">
+                <div class="card">
+                    <div class="card-header">작성한 게시글</div>
+                    <div class="card-body">
 
-                            <c:if test="${empty postList}">
-                                <p class="text-center text-muted mb-0">작성한 게시글이 없습니다.</p>
-                            </c:if>
+                        <c:if test="${empty postList}">
+                            <p class="text-center text-muted mb-0">작성한 게시글이 없습니다.</p>
+                        </c:if>
 
-                            <c:if test="${not empty postList}">
-                                <table class="table table-hover align-middle">
-                                    <thead>
-                                    <tr>
-                                        <th>번호</th>
-                                        <th>제목</th>
-                                        <th>작성일</th>
-                                        <th class="text-center">관리</th>
+                        <c:if test="${not empty postList}">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>제목</th>
+                                    <th>작성일</th>
+                                    <th class="text-center">관리</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="post" items="${postList}">
+                                    <tr id="post-${post.postId}">
+                                        <td>${post.postId}</td>
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/post/detail?postId=${post.postId}">
+                                                ${post.title}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <fmt:formatDate value="${post.contentDate}" pattern="yyyy-MM-dd"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-danger"
+                                                    onclick="deletePost(${post.postId})">
+                                                삭제
+                                            </button>
+                                        </td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach var="post" items="${postList}">
-                                        <tr id="post-${post.postId}">
-                                            <td>${post.postId}</td>
-                                            <td>
-                                                <a href="${pageContext.request.contextPath}/post/detail?postId=${post.postId}">
-                                                    ${post.title}
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <fmt:formatDate value="${post.contentDate}" pattern="yyyy-MM-dd"/>
-                                            </td>
-                                            <td class="text-center">
-                                                <button class="btn btn-sm btn-danger"
-                                                        onclick="deletePost(${post.postId})">
-                                                    삭제
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </c:if>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </c:if>
 
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- 작성한 댓글 -->
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-10 col-md-11 mt-5">
-                    <div class="card">
-                        <div class="card-header">작성한 댓글</div>
-                        <div class="card-body">
+        <!-- 작성한 댓글 -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 col-md-11 mt-5">
+                <div class="card">
+                    <div class="card-header">작성한 댓글</div>
+                    <div class="card-body">
 
-                            <c:if test="${empty commentList}">
-                                <p class="text-center text-muted mb-0">작성한 댓글이 없습니다.</p>
-                            </c:if>
+                        <c:if test="${empty commentList}">
+                            <p class="text-center text-muted mb-0">작성한 댓글이 없습니다.</p>
+                        </c:if>
 
-                            <c:if test="${not empty commentList}">
-                                <table class="table table-hover align-middle">
-                                    <thead>
-                                    <tr>
-                                        <th>게시글</th>
-                                        <th>내용</th>
-                                        <th>작성일</th>
-                                        <th class="text-center">관리</th>
+                        <c:if test="${not empty commentList}">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                <tr>
+                                    <th>게시글</th>
+                                    <th>내용</th>
+                                    <th>작성일</th>
+                                    <th class="text-center">관리</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="comment" items="${commentList}">
+                                    <tr id="comment-${comment.commentId}">
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/post/detail?postId=${comment.postId}">
+                                                ${comment.postTitle}
+                                            </a>
+                                        </td>
+                                        <td>${comment.content}</td>
+                                        <td>
+                                            <fmt:formatDate value="${comment.contentDate}" pattern="yyyy-MM-dd HH:mm"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-danger"
+                                                    onclick="deleteComment(${comment.commentId})">
+                                                삭제
+                                            </button>
+                                        </td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach var="comment" items="${commentList}">
-                                        <tr id="comment-${comment.commentId}">
-                                            <td>
-                                                <a href="${pageContext.request.contextPath}/post/detail?postId=${comment.postId}">
-                                                    ${comment.postTitle}
-                                                </a>
-                                            </td>
-                                            <td>${comment.content}</td>
-                                            <td>
-                                                <fmt:formatDate value="${comment.contentDate}" pattern="yyyy-MM-dd HH:mm"/>
-                                            </td>
-                                            <td class="text-center">
-                                                <button class="btn btn-sm btn-danger"
-                                                        onclick="deleteComment(${comment.commentId})">
-                                                    삭제
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </c:if>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </c:if>
 
-                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- 목록 이동 -->
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-10 text-end">
-                    <a href="${pageContext.request.contextPath}/admin/userlist"
-                       class="btn btn-outline-secondary btn-sm">
-                        회원 목록으로
-                    </a>
-                </div>
-            </div>
-
         </div>
-    </main>
 
-    <!-- =================== FOOTER (항상 맨 밑) =================== -->
-    <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid px-4">
-            <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted">© Storm BaseballBoard</div>
+        <!-- 목록 이동 -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-end">
+                <a href="${pageContext.request.contextPath}/admin/userlist"
+                   class="btn btn-outline-secondary btn-sm">
+                    회원 목록으로
+                </a>
             </div>
         </div>
-    </footer>
+
+    </div>
+</main>
+
+<!-- =================== FOOTER (항상 맨 밑) =================== -->
+<footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">© Storm BaseballBoard</div>
+        </div>
+    </div>
+</footer>
 
 </div>
 
