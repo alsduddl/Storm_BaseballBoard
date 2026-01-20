@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kgitbank.spring.recommend.dao.IRecommendRepository" >
+
+<select id="getBestCheerSeat" resultType="org.kgitbank.spring.recommend.vo.SeatRankVO">
+select seat_info as seatInfo,
+round(avg(cheer_score), 1)as avgScore
+from post
+where is_notice = 'N'
+group by seat_info
+order by avg(cheer_score) desc
+fetch first 1 rows only
+</select>
+
+<select id="getBestSatisfactionSeat" resultType="org.kgitbank.spring.recommend.vo.SeatRankVO">
+select seat_info as seatInfo,
+round(avg(satisfaction_score), 1)as avgScore
+from post
+where is_notice = 'N'
+group by seat_info
+order by avg(satisfaction_score) desc
+fetch first 1 rows only
+</select>
+
+<select id="getTopSeatPost" resultType="org.kgitbank.spring.recommend.vo.SeatPostRankVO">
+select p.post_id as postId,
+p.title,
+p.seat_info as seatInfo,
+avg((p.cheer_score + p.satisfaction_score)/2) as avgScore
+from post p
+where p.is_notice = 'N'
+group by p.post_id, p.title, p.seat_info
+order by avgScore desc
+fetch first 3 rows only
+</select>
+
+<select id="searchSeat" resultType="org.kgitbank.spring.recommend.vo.SeatPostRankVO">
+select post_id as postId,
+title,
+seat_info as seatInfo,
+round((cheer_score + satisfaction_score)/2, 1) as avgScore
+from post
+where is_notice = 'N'
+<if test="keyword != null and keyword != ''">
+and (
+seat_info like '%' || #{keyword} || '%'
+or title like '%' || #{keyword} || '%'
+or content like '%' || #{keyword} || '%'
+)
+</if>
+order by avgScore desc
+</select>
+
+</mapper>

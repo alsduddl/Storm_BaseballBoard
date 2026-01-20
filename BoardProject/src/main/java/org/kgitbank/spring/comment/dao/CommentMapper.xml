@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kgitbank.spring.comment.dao.ICommentRepository" >
+
+<insert id="writeComment" parameterType="org.kgitbank.spring.comment.vo.CommentVO">
+<selectKey keyProperty="commentId" resultType="int" order="BEFORE">
+select comment_seq.NEXTVAL from dual
+</selectKey>
+insert into comments(comment_id, post_id, user_id, content, content_date, parent_comment_id)
+values(#{commentId}, #{postId}, #{userId}, #{content}, SYSDATE, #{parentCommentId, jdbcType=INTEGER})
+</insert>
+
+<resultMap id="commentResultMap" type="org.kgitbank.spring.comment.vo.CommentVO">
+<id property="commentId" column="comment_id"/>
+<result property="postId" column="post_id"/>
+<result property="userId" column="user_id"/>
+<result property="content" column="content"/>
+<result property="contentDate" column="content_date"/>
+<result property="parentCommentId" column="parent_comment_id"/>
+</resultMap>
+
+<select id="getCommentList" resultMap="commentResultMap">
+select * 
+from comments
+where post_id = #{postId}
+order by NVL(parent_comment_id, comment_id), comment_id
+</select>
+
+<select id="getCommentById" resultMap="commentResultMap">
+select *
+from comments
+where comment_id = #{commentId}
+</select>
+
+<update id="updateComment" parameterType="org.kgitbank.spring.comment.vo.CommentVO">
+update comments
+set content = #{content, jdbcType=VARCHAR},
+content_date = SYSDATE
+where comment_id = #{commentId} and user_id = #{userId}
+</update>
+
+<delete id="deleteComment" >
+delete from comments
+where comment_id = #{commentId} and user_id = #{userId}
+</delete>
+
+<resultMap id="commentMap" type="org.kgitbank.spring.comment.vo.CommentVO">
+<id property="commentId" column="comment_id"/>
+<result property="postId" column="post_id"/>
+<result property="userId" column="user_id"/>
+<result property="content" column="content"/>
+<result property="contentDate" column="content_date"/>
+<result property="postTitle" column="postTitle"/>
+</resultMap>
+
+<select id="getMyCommentList" resultMap="commentMap">
+select c.comment_id,
+c.post_id,
+c.user_id,
+c.content,
+c.content_date,
+p.title as postTitle
+from comments c
+join post p on c.post_id = p.post_id
+where c.user_id = #{userId}
+order by c.content_date desc
+</select>
+
+</mapper>
