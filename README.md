@@ -11,10 +11,11 @@ Java + STS3 Storm 야구장 좌석 후기 게시판
 - 다른 후기 게시글과의 차별점 : 응원 분위기와 만족도를 점수로 표현하여 한 눈에 파악 가능
 
 ### 🔧 개발 환경
-- Java 11
-- IDE : STS3(Spring Tool Suite 3)
-- Framework : Spring MVC 4.3.25
+- Java 11 
+- Apache Tomcat 9.0
+- Spring Framework 4.3.25
 - Security : Spring Security 4.2.3
 - Database : Oracle 18c(xe)
-- ORM : MyBatis 
-- Server : Tomcat 9
+- MyBatis 3.4.6
+- JSP, CSS
+- IDE : STS3(Spring Tool Suite 3), SQL Developer
