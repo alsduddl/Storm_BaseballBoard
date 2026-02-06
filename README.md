@@ -19,3 +19,9 @@ Java + STS3 Storm 야구장 좌석 후기 게시판
 - MyBatis 3.4.6
 - JSP, CSS
 - IDE : STS3(Spring Tool Suite 3), SQL Developer
+
+### 기능정의서
+<img width="1326" height="611" alt="Image" src="https://github.com/user-attachments/assets/4bf19069-ddd0-442b-b65c-dd9912fed4ab" />
+
+### ERD
+<img width="1173" height="736" alt="Image" src="https://github.com/user-attachments/assets/9cbd026f-8baa-4fdc-a543-37de75d6a1ae" />
